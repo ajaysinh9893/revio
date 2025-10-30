@@ -126,13 +126,20 @@ const AdminDashboard = () => {
               className="relative"
             >
               <Tag className="w-4 h-4 mr-2" />
-              Tags
+              Tags (Legacy)
               {badges.pending_tags > 0 && (
                 <span className="absolute -top-1 -right-1 flex h-3 w-3">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-3 w-3 bg-purple-500"></span>
                 </span>
               )}
+            </Button>
+            <Button 
+              onClick={() => navigate("/admin/tag-pairs")} 
+              variant="default"
+            >
+              <Tag className="w-4 h-4 mr-2" />
+              Tag Pairs
             </Button>
             <Button onClick={() => navigate("/admin/tickets")} variant="outline">
               <LifeBuoy className="w-4 h-4 mr-2" />
