@@ -1240,7 +1240,9 @@ app.include_router(payment_router)  # Include subscription/payment routes
 
 # Import admin routes
 from admin_routes import admin_router
+from tag_pair_routes import tag_pair_router
 app.include_router(admin_router)  # Include admin panel routes
+app.include_router(tag_pair_router)  # Include tag pair management routes
 
 app.add_middleware(
     CORSMiddleware,
