@@ -1,52 +1,46 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "@/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
-
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
-
-const Home = () => {
-  const helloWorldApi = async () => {
-    try {
-      const response = await axios.get(`${API}/`);
-      console.log(response.data.message);
-    } catch (e) {
-      console.error(e, `errored out requesting / api`);
-    }
-  };
-
-  useEffect(() => {
-    helloWorldApi();
-  }, []);
-
-  return (
-    <div>
-      <header className="App-header">
-        <a
-          className="App-link"
-          href="https://emergent.sh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
-        </a>
-        <p className="mt-5">Building something incredible ~!</p>
-      </header>
-    </div>
-  );
-};
+import BusinessLogin from "@/pages/BusinessLogin";
+import HomePage from "@/pages/HomePage";
+import ReviewPage from "@/pages/ReviewPage";
+import ProfileDashboard from "@/pages/ProfileDashboard";
+import ViewQRCode from "@/pages/ViewQRCode";
+import SubscribePage from "@/pages/SubscribePage";
+import GoogleVerification from "@/pages/GoogleVerification";
+import GoogleBusinessDashboard from "@/pages/GoogleBusinessDashboard";
+import AdminLogin from "@/pages/admin/AdminLogin";
+import AdminDashboard from "@/pages/admin/AdminDashboard";
+import AdminBusinesses from "@/pages/admin/AdminBusinesses";
+import AdminBusinessDetail from "@/pages/admin/AdminBusinessDetail";
+import AdminTags from "@/pages/admin/AdminTags";
+import AdminTickets from "@/pages/admin/AdminTickets";
+import { Toaster } from "@/components/ui/sonner";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
+          <Route path="/" element={<BusinessLogin />} />
+          <Route path="/register" element={<HomePage />} />
+          <Route path="/review/:businessId" element={<ReviewPage />} />
+          <Route path="/dashboard" element={<ProfileDashboard />} />
+          <Route path="/view-qr" element={<ViewQRCode />} />
+          <Route path="/subscribe" element={<SubscribePage />} />
+          <Route path="/google-verification" element={<GoogleVerification />} />
+          <Route path="/google-dashboard" element={<GoogleBusinessDashboard />} />
+          
+          {/* Admin Routes */}
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/businesses" element={<AdminBusinesses />} />
+          <Route path="/admin/business/:businessId" element={<AdminBusinessDetail />} />
+          <Route path="/admin/tags" element={<AdminTags />} />
+          <Route path="/admin/tickets" element={<AdminTickets />} />
         </Routes>
       </BrowserRouter>
+      <Toaster position="top-center" />
     </div>
   );
 }
