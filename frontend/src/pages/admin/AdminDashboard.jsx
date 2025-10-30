@@ -238,11 +238,7 @@ const AdminDashboard = () => {
                 <Building2 className="w-4 h-4 mr-2" />
                 View All Businesses
               </Button>
-              <Button onClick={() => navigate("/admin/tags")} variant="outline" className="w-full justify-start">
-                <Tag className="w-4 h-4 mr-2" />
-                Manage Tags (Legacy)
-              </Button>
-              <Button onClick={() => navigate("/admin/tag-pairs")} variant="default" className="w-full justify-start">
+              <Button onClick={() => navigate("/admin/tag-pairs")} variant="outline" className="w-full justify-start">
                 <Tag className="w-4 h-4 mr-2" />
                 Tag Pairs Inventory
               </Button>
