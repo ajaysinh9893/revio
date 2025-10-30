@@ -512,12 +512,12 @@ const AdminTagPairs = () => {
                 </SelectContent>
               </Select>
               
-              <Select value={filterBusiness} onValueChange={setFilterBusiness}>
+              <Select value={filterBusiness || "all"} onValueChange={(val) => setFilterBusiness(val === "all" ? "" : val)}>
                 <SelectTrigger data-testid="filter-business-select">
                   <SelectValue placeholder="All Businesses" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Businesses</SelectItem>
+                  <SelectItem value="all">All Businesses</SelectItem>
                   {businesses.map((biz) => (
                     <SelectItem key={biz.id} value={biz.id}>
                       {biz.name}
