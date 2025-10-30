@@ -655,15 +655,28 @@ const AdminTagPairs = () => {
                             )}
                             
                             {(pair.status === "assigned" || pair.status === "active" || pair.status === "inactive") && (
-                              <Button
-                                data-testid={`reassign-btn-${pair.pair_id}`}
-                                size="sm"
-                                variant="outline"
-                                onClick={() => handleReassign(pair)}
-                              >
-                                <RefreshCw className="w-3 h-3 mr-1" />
-                                Reassign
-                              </Button>
+                              <>
+                                <Button
+                                  data-testid={`reassign-btn-${pair.pair_id}`}
+                                  size="sm"
+                                  variant="outline"
+                                  onClick={() => handleReassign(pair)}
+                                >
+                                  <RefreshCw className="w-3 h-3 mr-1" />
+                                  Reassign
+                                </Button>
+                                
+                                <Button
+                                  data-testid={`reset-btn-${pair.pair_id}`}
+                                  size="sm"
+                                  variant="outline"
+                                  onClick={() => handleReset(pair)}
+                                  title="Reset to unassigned"
+                                >
+                                  <RotateCcw className="w-3 h-3 mr-1" />
+                                  Reset
+                                </Button>
+                              </>
                             )}
                             
                             {(pair.status === "assigned" || pair.status === "inactive") && (
