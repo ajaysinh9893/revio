@@ -13,7 +13,6 @@ import AdminLogin from "@/pages/admin/AdminLogin";
 import AdminDashboard from "@/pages/admin/AdminDashboard";
 import AdminBusinesses from "@/pages/admin/AdminBusinesses";
 import AdminBusinessDetail from "@/pages/admin/AdminBusinessDetail";
-import AdminTags from "@/pages/admin/AdminTags";
 import AdminTagPairs from "@/pages/admin/AdminTagPairs";
 import AdminTickets from "@/pages/admin/AdminTickets";
 import { Toaster } from "@/components/ui/sonner";
