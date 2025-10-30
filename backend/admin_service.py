@@ -82,8 +82,8 @@ class AdminService:
         
         # Tags
         total_tags = await self.db.tags.count_documents({})
-        available_tags = await self.db.tags.count_documents({"status": TagStatus.AVAILABLE})
-        assigned_tags = await self.db.tags.count_documents({"status": {"$in": [TagStatus.ASSIGNED, TagStatus.ACTIVE]}})
+        available_tags = await self.db.tags.count_documents({"status": TagStatus.INACTIVE})
+        assigned_tags = await self.db.tags.count_documents({"status": {"$in": [TagStatus.PENDING, TagStatus.ACTIVE]}})
         
         # GPT usage (count reviews generated)
         gpt_usage = await self.db.reviews.count_documents({})
