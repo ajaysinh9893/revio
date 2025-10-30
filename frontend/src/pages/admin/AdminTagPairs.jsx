@@ -499,12 +499,12 @@ const AdminTagPairs = () => {
                 />
               </div>
               
-              <Select value={filterStatus} onValueChange={setFilterStatus}>
+              <Select value={filterStatus || "all"} onValueChange={(val) => setFilterStatus(val === "all" ? "" : val)}>
                 <SelectTrigger data-testid="filter-status-select">
                   <SelectValue placeholder="All Statuses" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Statuses</SelectItem>
+                  <SelectItem value="all">All Statuses</SelectItem>
                   <SelectItem value="unassigned">Unassigned</SelectItem>
                   <SelectItem value="assigned">Assigned</SelectItem>
                   <SelectItem value="active">Active</SelectItem>
