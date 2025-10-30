@@ -73,6 +73,9 @@ async def create_tag_pair(
     
     await service.db.tag_pairs.insert_one(pair_doc)
     
+    # Remove MongoDB _id for response
+    pair_doc.pop('_id', None)
+    
     # Log activity
     await log_activity(
         service.db, tag_pair.pair_id, "Created",
