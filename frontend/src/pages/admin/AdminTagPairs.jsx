@@ -93,8 +93,8 @@ const AdminTagPairs = () => {
       
       // Fetch tag pairs
       const params = new URLSearchParams();
-      if (filterStatus) params.append("status", filterStatus);
-      if (filterBusiness) params.append("business_id", filterBusiness);
+      if (filterStatus && filterStatus !== "all") params.append("status", filterStatus);
+      if (filterBusiness && filterBusiness !== "all") params.append("business_id", filterBusiness);
       
       const pairsRes = await axios.get(`${API}/admin/tag-pairs/list?${params.toString()}`, {
         headers: { Authorization: `Bearer ${token}` }
