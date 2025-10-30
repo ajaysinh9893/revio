@@ -350,6 +350,50 @@ async def deactivate_tag_pair(
     
     return {"success": True, "message": "Tag pair deactivated successfully"}
 
+@tag_pair_router.post("/reset/{pair_id}")
+async def reset_tag_pair(
+    pair_id: str,
+    request: Request,
+    admin = Depends(verify_admin),
+    service: AdminService = Depends(get_admin_service)
+):
+    """Reset tag pair to unassigned state"""
+    pair = await service.db.tag_pairs.find_one({"pair_id": pair_id}, {"_id": 0})
+    if not pair:
+        raise HTTPException(status_code=404, detail="Tag pair not found")
+    
+    if pair['status'] == "unassigned":
+        raise HTTPException(status_code=400, detail="Tag pair is already unassigned")
+    
+    previous_state = pair.copy()
+    
+    update_data = {
+        "status": "unassigned",
+        "business_id": None,
+        "business_name": None,
+        "business_location": None,
+        "assigned_at": None,
+        "assigned_by": None,
+        "activated_at": None,
+        "deactivated_at": None,
+        "updated_at": datetime.now(timezone.utc).isoformat()
+    }
+    
+    await service.db.tag_pairs.update_one(
+        {"pair_id": pair_id},
+        {"$set": update_data}
+    )
+    
+    # Log activity
+    await log_activity(
+        service.db, pair_id, "Reset",
+        admin, previous_state, update_data,
+        request.client.host,
+        f"Reset from {previous_state.get('status')} to unassigned"
+    )
+    
+    return {"success": True, "message": "Tag pair reset successfully"}
+
 @tag_pair_router.delete("/delete/{pair_id}")
 async def delete_tag_pair(
     pair_id: str,
