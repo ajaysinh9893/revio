@@ -151,7 +151,7 @@ class AdminService:
     
     async def check_low_stock(self, threshold: int = 10) -> int:
         """Check if tag inventory is low"""
-        available = await self.db.tags.count_documents({"status": TagStatus.AVAILABLE})
+        available = await self.db.tags.count_documents({"status": TagStatus.INACTIVE})
         return available
     
     async def log_admin_action(self, admin: Admin, action: str, entity_type: str, entity_id: str, changes: dict, ip_address: Optional[str] = None):
