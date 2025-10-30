@@ -247,7 +247,11 @@ const AdminDashboard = () => {
               </Button>
               <Button onClick={() => navigate("/admin/tags")} variant="outline" className="w-full justify-start">
                 <Tag className="w-4 h-4 mr-2" />
-                Manage Tags
+                Manage Tags (Legacy)
+              </Button>
+              <Button onClick={() => navigate("/admin/tag-pairs")} variant="default" className="w-full justify-start">
+                <Tag className="w-4 h-4 mr-2" />
+                Tag Pairs Inventory
               </Button>
               <Button onClick={() => navigate("/admin/tickets")} variant="outline" className="w-full justify-start">
                 <LifeBuoy className="w-4 h-4 mr-2" />
