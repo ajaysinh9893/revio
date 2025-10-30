@@ -260,6 +260,22 @@ const AdminTagPairs = () => {
     }
   };
 
+  const handleReset = async (pair) => {
+    if (!confirm(`Reset tag pair ${pair.pair_id} to unassigned state?`)) return;
+    
+    try {
+      const token = localStorage.getItem("admin_token");
+      await axios.post(`${API}/admin/tag-pairs/reset/${pair.pair_id}`, {}, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      toast.success("Tag pair reset successfully");
+      fetchData();
+    } catch (error) {
+      console.error(error);
+      toast.error(error.response?.data?.detail || "Failed to reset");
+    }
+  };
+
   const fetchActivityLog = async (pair) => {
     try {
       const token = localStorage.getItem("admin_token");
