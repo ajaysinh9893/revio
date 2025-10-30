@@ -33,6 +33,7 @@ import {
   Power,
   PowerOff,
   RefreshCw,
+  RotateCcw,
   Tag,
   QrCode,
   Radio
