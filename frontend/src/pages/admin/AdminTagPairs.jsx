@@ -46,8 +46,8 @@ const AdminTagPairs = () => {
   const [businesses, setBusinesses] = useState([]);
   const [stats, setStats] = useState({});
   const [loading, setLoading] = useState(true);
-  const [filterStatus, setFilterStatus] = useState("");
-  const [filterBusiness, setFilterBusiness] = useState("");
+  const [filterStatus, setFilterStatus] = useState("all");
+  const [filterBusiness, setFilterBusiness] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   
   // Dialog states
